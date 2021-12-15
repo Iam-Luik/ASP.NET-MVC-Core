@@ -25,8 +25,8 @@ namespace MinhaDemoMvc.Controllers
                 Avaliacao = 10,
                 Valor = 20000
             };
-            return RedirectToAction("Privacy", filme);
-            //return View();
+            //return RedirectToAction("Privacy", filme);
+            return View();
         }
 
         public IActionResult Privacy(Filme filme)

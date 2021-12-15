@@ -7,7 +7,7 @@ namespace MinhaDemoMvc.Models
     {
         [Key]
         public int Id { get; set; }
-
+        
         [Required(ErrorMessage = "O campo Título é obrigatório.")]
         [StringLength(60, MinimumLength = 3, ErrorMessage = "O Título precisa ter entre 3 e 60 caracteres.")]
         public string Titulo { get; set; }
