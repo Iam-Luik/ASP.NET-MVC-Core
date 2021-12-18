@@ -10,7 +10,7 @@ builder.Services.Configure<RazorViewEngineOptions>(options =>
     options.AreaPageViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
 
 });
-
+ 
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddRazorPages();
