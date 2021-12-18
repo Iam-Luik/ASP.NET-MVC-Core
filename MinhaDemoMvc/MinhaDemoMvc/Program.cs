@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using MinhaDemoMvc.Data;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,3 +30,12 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+services.Configure<RazorViewEngineOptions>(options =>
+{
+    
+        ));
+});
+
+
+
