@@ -2,10 +2,18 @@
 
 namespace DevIO.UI.AppModelo.Modulos.Produtos.Controllers
 {
+    [Area("Produtos")]
+    [Route("produtos")]
     public class CadastroController : Controller
     {
-        [Area("Produtos")]
+        [Route("lista")]
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [Route("busca")]
+        public IActionResult Busca()
         {
             return View();
         }
