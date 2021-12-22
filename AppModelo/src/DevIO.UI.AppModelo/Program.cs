@@ -1,3 +1,5 @@
+using DevIO.UI.AppModelo.Data;
+using DevIO.UI.AppModelo.Servicos;
 using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,8 +15,15 @@ builder.Services.Configure<RazorViewEngineOptions>(options =>
 
 builder.Services.AddControllersWithViews();
 
-
 builder.Services.AddRazorPages();
+builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
+
+builder.Services.AddTransient<IOperacaoTransient, Operacao>();
+builder.Services.AddScoped<IOperacaoScoped, Operacao>();
+builder.Services.AddSingleton<IOperacaoSingleton, Operacao>();
+builder.Services.AddSingleton<IOperacaoSingletonInstance>(new Operacao(Guid.Empty));
+
+builder.Services.AddTransient<OperacaoService>();
 
 var app = builder.Build();
 

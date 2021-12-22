@@ -1,1 +1,6 @@
-﻿Olá, mundo!
+﻿@using DevIO.UI.AppModelo.Data
+@inject IPedidoRepository PedidoRepository
+
+Olá!
+
+@PedidoRepository.ObterPedido().Id
