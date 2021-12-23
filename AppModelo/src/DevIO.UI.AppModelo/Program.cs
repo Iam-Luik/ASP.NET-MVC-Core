@@ -1,8 +1,10 @@
 using DevIO.UI.AppModelo.Data;
 using DevIO.UI.AppModelo.Servicos;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 builder.Services.Configure<RazorViewEngineOptions>(options =>
 {
@@ -12,6 +14,9 @@ builder.Services.Configure<RazorViewEngineOptions>(options =>
     options.AreaPageViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
 
 });
+
+
+
 
 builder.Services.AddControllersWithViews();
 
@@ -25,7 +30,14 @@ builder.Services.AddSingleton<IOperacaoSingletonInstance>(new Operacao(Guid.Empt
 
 builder.Services.AddTransient<OperacaoService>();
 
+
 var app = builder.Build();
+IConfiguration configuration = app.Configuration;
+IWebHostEnvironment environment = app.Environment;
+builder.Services.AddDbContext<MeuDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("MeuDbContext")));
+
+
+
 
 if (!app.Environment.IsDevelopment())
 {
