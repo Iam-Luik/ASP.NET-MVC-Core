@@ -1,10 +1,10 @@
 using DevIO.UI.AppModelo.Data;
 using DevIO.UI.AppModelo.Servicos;
 using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 builder.Services.Configure<RazorViewEngineOptions>(options =>
 {
@@ -16,11 +16,6 @@ builder.Services.Configure<RazorViewEngineOptions>(options =>
 });
 
 
-
-
-builder.Services.AddControllersWithViews();
-
-builder.Services.AddRazorPages();
 builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
 
 builder.Services.AddTransient<IOperacaoTransient, Operacao>();
@@ -34,7 +29,7 @@ builder.Services.AddTransient<OperacaoService>();
 var app = builder.Build();
 IConfiguration configuration = app.Configuration;
 IWebHostEnvironment environment = app.Environment;
-builder.Services.AddDbContext<MeuDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("MeuDbContext")));
+//builder.Services.AddDbContext<MeuDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("MeuDbContext")));
 
 
 
