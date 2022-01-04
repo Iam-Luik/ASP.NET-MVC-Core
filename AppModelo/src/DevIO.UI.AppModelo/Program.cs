@@ -1,6 +1,7 @@
 using DevIO.UI.AppModelo.Data;
 using DevIO.UI.AppModelo.Servicos;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
@@ -18,18 +19,17 @@ builder.Services.Configure<RazorViewEngineOptions>(options =>
 
 builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
 
-builder.Services.AddTransient<IOperacaoTransient, Operacao>();
-builder.Services.AddScoped<IOperacaoScoped, Operacao>();
-builder.Services.AddSingleton<IOperacaoSingleton, Operacao>();
-builder.Services.AddSingleton<IOperacaoSingletonInstance>(new Operacao(Guid.Empty));
-
-builder.Services.AddTransient<OperacaoService>();
+//builder.Services.AddTransient<IOperacaoTransient, Operacao>();
+//builder.Services.AddScoped<IOperacaoScoped, Operacao>();
+//builder.Services.AddSingleton<IOperacaoSingleton, Operacao>();
+//builder.Services.AddSingleton<IOperacaoSingletonInstance>(new Operacao(Guid.Empty));
+//builder.Services.AddTransient<OperacaoService>();
 
 
 var app = builder.Build();
 IConfiguration configuration = app.Configuration;
 IWebHostEnvironment environment = app.Environment;
-//builder.Services.AddDbContext<MeuDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("MeuDbContext")));
+builder.Services.AddDbContext<MeuDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("MeuDbContext")));
 
 
 

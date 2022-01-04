@@ -11,7 +11,7 @@ namespace DevIO.UI.AppModelo.Modulos.Produtos.Controllers
         {
             return View();
         }
-
+        
         [Route("busca")]
         public IActionResult Busca()
         {
