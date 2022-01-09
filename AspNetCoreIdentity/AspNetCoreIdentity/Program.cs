@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("AspNetCoreIdentityContextConnection");
 builder.Services.AddDbContext<AspNetCoreIdentityContext>(options => options.UseSqlServer(connectionString));
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddDefaultUI().AddEntityFrameworkStores<AspNetCoreIdentityContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>().AddDefaultUI().AddEntityFrameworkStores<AspNetCoreIdentityContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
