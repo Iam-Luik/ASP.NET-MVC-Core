@@ -1,33 +1,27 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using AspNetCoreIdentity.Areas.Identity.Data;
-using AspNetCoreIdentity.Extensions;
-using Microsoft.AspNetCore.Authorization;
+using AspNetCoreIdentity.Config;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("AspNetCoreIdentityContextConnection");
-builder.Services.AddDbContext<AspNetCoreIdentityContext>(options => options.UseSqlServer(connectionString));
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>().AddDefaultUI().AddEntityFrameworkStores<AspNetCoreIdentityContext>();
-builder.Services.AddAuthorization(options =>
+ConfigurationManager configuration = builder.Configuration;
+
+builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 {
-    options.AddPolicy("PodeExcluir", policy => policy.RequireClaim("PodeExcluir"));
-    options.AddPolicy("PodeLer", policy => policy.Requirements.Add(new PermissaoNecessaria("PodeLer")));
-    options.AddPolicy("PodeEscrever", policy => policy.Requirements.Add(new PermissaoNecessaria("PodeEscrever")));
+    config
+    .AddJsonFile("appsettings.json", true, true)
+    .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
+    .AddEnvironmentVariables();
 });
 
-builder.Services.AddSingleton<IAuthorizationHandler, PermissaoNecessariaHandler>();
-
-// Add services to the container.
+builder.Services.AddIdentityConfig(configuration);
+builder.Services.AddAuthorizationConfig();
+builder.Services.ResolveDependencies();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
