@@ -10,6 +10,12 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
     .AddJsonFile("appsettings.json", true, true)
     .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
     .AddEnvironmentVariables();
+
+    if (hostingContext.HostingEnvironment.IsProduction())
+    {
+        config.AddUserSecrets<Program>();
+    }
+    
 });
 
 builder.Services.AddIdentityConfig(configuration);
