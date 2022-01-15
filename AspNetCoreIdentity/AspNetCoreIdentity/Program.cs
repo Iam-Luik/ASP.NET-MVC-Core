@@ -1,4 +1,5 @@
 using AspNetCoreIdentity.Config;
+using AspNetCoreIdentity.Extensions;
 using IdentityStudy.Config;
 using KissLog.AspNetCore;
 
@@ -21,9 +22,10 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 });
 
 builder.Services.AddIdentityConfig(Configuration);
+
 builder.Services.AddAuthorizationConfig();
+
 builder.Services.ResolveDependencies();
-builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -50,11 +52,9 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 
 
 app.Run();

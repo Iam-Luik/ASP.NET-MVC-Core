@@ -16,15 +16,16 @@ namespace AspNetCoreIdentity.Controllers
         }
 
         [AllowAnonymous]
+        [AuditoriaFilter]
         public IActionResult Index()
         {
-            _logger.LogTrace("Usuário acessou a home");
+            _logger.LogInformation("Usuário acessou a home");
             return View();
         }
 
         public IActionResult Privacy()
         {
-            throw new Exception("Erro");
+            //throw new Exception("Erro");
             return View();
         }
         [Authorize(Roles = "Admin, Gestor")]

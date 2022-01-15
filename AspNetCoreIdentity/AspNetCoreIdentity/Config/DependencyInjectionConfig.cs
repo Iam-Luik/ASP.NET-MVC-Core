@@ -19,6 +19,8 @@ namespace AspNetCoreIdentity.Config
                 logging.AddKissLog();
             });
 
+            services.AddScoped<AuditoriaFilter>();
+
             return services;
         }
     }
