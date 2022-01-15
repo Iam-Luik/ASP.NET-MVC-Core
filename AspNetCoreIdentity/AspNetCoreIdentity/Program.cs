@@ -1,8 +1,10 @@
 using AspNetCoreIdentity.Config;
+using IdentityStudy.Config;
+using KissLog.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-ConfigurationManager configuration = builder.Configuration;
+ConfigurationManager Configuration = builder.Configuration;
 
 builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 {
@@ -18,7 +20,7 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
     
 });
 
-builder.Services.AddIdentityConfig(configuration);
+builder.Services.AddIdentityConfig(Configuration);
 builder.Services.AddAuthorizationConfig();
 builder.Services.ResolveDependencies();
 builder.Services.AddControllersWithViews();
@@ -30,18 +32,29 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/erro/500");
     app.UseStatusCodePagesWithRedirects("/erro/{0}");
     app.UseHsts();
-}
+}   
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
 app.UseAuthentication();
+
+app.UseKissLogMiddleware(options => {
+    LogConfig.ConfigureKissLog(options, Configuration);
+});
+
 app.UseAuthorization();
+
 app.MapRazorPages();
+
+
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
 
 app.Run();

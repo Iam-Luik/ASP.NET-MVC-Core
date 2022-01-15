@@ -2,7 +2,6 @@
 using AspNetCoreIdentity.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace AspNetCoreIdentity.Controllers
 {
@@ -19,6 +18,7 @@ namespace AspNetCoreIdentity.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+            _logger.LogTrace("Usuário acessou a home");
             return View();
         }
 
