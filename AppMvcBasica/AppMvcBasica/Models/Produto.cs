@@ -19,6 +19,7 @@ namespace AppMvcBasica.Models
         public string Imagem { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        [RegularExpression(@"^[0-9]+(\.[0-9]{1,2})$", ErrorMessage = "Valid Decimal number with maximum 2 decimal places.")]
         public decimal Valor { get; set; }
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }

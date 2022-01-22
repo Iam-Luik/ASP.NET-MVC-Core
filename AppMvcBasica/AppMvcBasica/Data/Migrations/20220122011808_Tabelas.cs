@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AppMvcBasica.Data.Migrations
 {
-    public partial class TabelasSistema : Migration
+    public partial class Tabelas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

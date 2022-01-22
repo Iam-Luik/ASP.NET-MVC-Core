@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppMvcBasica.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220117222443_TabelasSistema")]
-    partial class TabelasSistema
+    [Migration("20220122011808_Tabelas")]
+    partial class Tabelas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
