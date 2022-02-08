@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using DevIO.App.ViewModels;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace DevIO.App.ViewsModels

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using DevIO.App.ViewsModels;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace DevIO.App.ViewsModels
@@ -24,6 +25,6 @@ namespace DevIO.App.ViewsModels
         [DisplayName("Ativo?")]
         public bool Ativo { get; set; }
 
-        public IEnumerable<ProdutoViewModel> Produtos { get; set; }
+        public IEnumerable<ProdutoViewModel>? Produtos { get; set; }
     }
 }

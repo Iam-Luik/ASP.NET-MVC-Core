@@ -12,6 +12,6 @@ namespace AppMvcBasica.Models
         public Endereco Endereco { get; set; }
         public bool Ativo { get; set; }
         /*EF relations */
-        public IEnumerable<Produto> Produtos { get; set; }
+        public IEnumerable<Produto>? Produtos { get; set; }
     }
 }
