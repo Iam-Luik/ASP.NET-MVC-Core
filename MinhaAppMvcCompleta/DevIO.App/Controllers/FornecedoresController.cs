@@ -40,18 +40,6 @@ namespace DevIO.App.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create(FornecedorViewModel fornecedorViewModel)
-        //{
-        //    if (!ModelState.IsValid) return View(fornecedorViewModel);
-
-        //    var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
-        //    await _fornecedorRepository.Adicionar(fornecedor);
-
-        //    return RedirectToAction(nameof(Index));
-        //}
-
         [HttpPost]
         public async Task<IActionResult> Create(FornecedorViewModel fornecedorViewModel)
         {
