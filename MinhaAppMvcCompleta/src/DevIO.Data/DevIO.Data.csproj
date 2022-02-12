@@ -9,6 +9,7 @@
   <ItemGroup>
     <Compile Remove="Migrations\20220124021833_Initial.cs" />
     <Compile Remove="Migrations\20220124021833_Initial.Designer.cs" />
+    <Compile Remove="Repository\Class1.cs" />
   </ItemGroup>
 
   <ItemGroup>

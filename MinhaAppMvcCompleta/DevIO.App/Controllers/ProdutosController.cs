@@ -37,7 +37,7 @@ namespace DevIO.App.Controllers
 
         public async Task<IActionResult> Create()
         {
-            var produtoViewModel = PopularFornecedores(new ProdutoViewModel());
+            var produtoViewModel = await PopularFornecedores(new ProdutoViewModel());
 
             return View(produtoViewModel);
         }
@@ -46,11 +46,11 @@ namespace DevIO.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProdutoViewModel produtoViewModel)
         {
-            produtoViewModel = await PopularFornecedores(new ProdutoViewModel());
+            produtoViewModel = await PopularFornecedores(produtoViewModel);
             if (!ModelState.IsValid) return View(produtoViewModel);
 
             await _produtoRepository.Adicionar(_mapper.Map<Produto>(produtoViewModel));
-            
+
             return View(produtoViewModel);
         }
 
@@ -116,7 +116,7 @@ namespace DevIO.App.Controllers
         }
 
         private async Task<ProdutoViewModel> PopularFornecedores(ProdutoViewModel produto)
-        { 
+        {
             produto.Fornecedores = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos());
             return produto;
         }
