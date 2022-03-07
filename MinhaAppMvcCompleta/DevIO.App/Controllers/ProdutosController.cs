@@ -60,6 +60,8 @@ namespace DevIO.App.Controllers
             await _produtoRepository.Adicionar(_mapper.Map<Produto>(produtoViewModel));
 
             return RedirectToAction("Index");
+
+            
         }
 
         public async Task<IActionResult> Edit(Guid id)
